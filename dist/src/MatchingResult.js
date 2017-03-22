@@ -21,8 +21,8 @@ var MATCH_TYPE = exports.MATCH_TYPE = {
 
 var MatchingResult = function () {
   function MatchingResult(type) {
-    var countOfMatches = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
-    var countOfMatchesUnspecific = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+    var countOfMatches = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    var countOfMatchesUnspecific = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
     _classCallCheck(this, MatchingResult);
 

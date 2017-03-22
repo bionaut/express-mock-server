@@ -99,11 +99,11 @@ var Handler = function () {
 
       var SET_NEW_REC = 'Set new record';
       if (isLogEnabled) console.time(SET_NEW_REC);
-      var _record$request = record.request;
-      var method = _record$request.method;
-      var path = _record$request.path;
-      var queryStringParameters = _record$request.queryStringParameters;
-      var body = _record$request.body;
+      var _record$request = record.request,
+          method = _record$request.method,
+          path = _record$request.path,
+          queryStringParameters = _record$request.queryStringParameters,
+          body = _record$request.body;
 
       var isChanged = false;
       this.map[path][method].forEach(function (changedRecord, index) {
@@ -134,9 +134,9 @@ var Handler = function () {
   }, {
     key: 'setRecord',
     value: function setRecord(map, record) {
-      var _record$request2 = record.request;
-      var method = _record$request2.method;
-      var path = _record$request2.path;
+      var _record$request2 = record.request,
+          method = _record$request2.method,
+          path = _record$request2.path;
 
       if (!map[path]) map[path] = {};
       if (!map[path][method]) map[path][method] = [];

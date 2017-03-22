@@ -114,9 +114,9 @@ var Server = function () {
       var countOfMatches = 0;
       var countOfMatchesUnspecific = 0;
       slaveQS.forEach(function (_ref) {
-        var name = _ref.name;
-        var values = _ref.values;
-        var type = _ref.type;
+        var name = _ref.name,
+            values = _ref.values,
+            type = _ref.type;
 
         if (!masterQS[name]) {
           result = _MatchingResult.MATCH_NO;
@@ -253,30 +253,26 @@ var Server = function () {
                 {
                   // match only filled
                   if (body.matchType && body.matchType === 'ONLY_MATCHING_FIELDS') {
-                    var _ret = function () {
-                      var recordBodyValue = JSON.parse(body.value);
+                    var recordBodyValue = JSON.parse(body.value);
 
-                      // let requestBodyKeysLength = Object.keys(requestBody).length;
-                      // let recordBodyKeysLength = Object.keys(recordBodyValue).length;
-                      // if(requestBodyKeysLength === recordBodyKeysLength){
-                      var isMatched = true;
-                      Object.keys(recordBodyValue).forEach(function (key) {
-                        var value = recordBodyValue[key];
-                        if (JSON.stringify(value) !== JSON.stringify(requestBody[key])) {
-                          isMatched = false;
-                        }
-                      });
-                      if (isMatched && !searchedRecord) {
-                        searchedRecord = record;
+                    // let requestBodyKeysLength = Object.keys(requestBody).length;
+                    // let recordBodyKeysLength = Object.keys(recordBodyValue).length;
+                    // if(requestBodyKeysLength === recordBodyKeysLength){
+                    var _isMatched = true;
+                    Object.keys(recordBodyValue).forEach(function (key) {
+                      var value = recordBodyValue[key];
+                      if (JSON.stringify(value) !== JSON.stringify(requestBody[key])) {
+                        _isMatched = false;
                       }
-                      // console.log('TEST FOR MATCH = '+isMatched);
-                      // }else{
-                      // console.log('NO MATCH');
-                      // }
-                      return 'break'; // break only if type is ONLY_MATCHING_FIELDS
-                    }();
-
-                    if (_ret === 'break') break;
+                    });
+                    if (_isMatched && !searchedRecord) {
+                      searchedRecord = record;
+                    }
+                    // console.log('TEST FOR MATCH = '+isMatched);
+                    // }else{
+                    // console.log('NO MATCH');
+                    // }
+                    break; // break only if type is ONLY_MATCHING_FIELDS
                   }
                 }
               case "STRING":
@@ -290,16 +286,16 @@ var Server = function () {
                   // console.log('=============');
                   // console.log(body.value === JSON.stringify(requestBody));
 
-                  var _isMatched = body.value === JSON.stringify(requestBody);
-                  if (_isMatched && !searchedRecord) {
+                  var _isMatched2 = body.value === JSON.stringify(requestBody);
+                  if (_isMatched2 && !searchedRecord) {
                     searchedRecord = record;
                   }
                   // console.log('EXACT DEFAULT '+isMatched);
                 }
             }
           } else {
-            var _isMatched2 = body === JSON.stringify(requestBody);
-            if (_isMatched2 && !searchedRecord) {
+            var _isMatched3 = body === JSON.stringify(requestBody);
+            if (_isMatched3 && !searchedRecord) {
               searchedRecord = record;
             }
             // console.log('EXACT');
@@ -552,7 +548,7 @@ function myLog(obj) {
               port             [8080]
  */
 function createServer(sources) {
-  var serverConfig = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  var serverConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   return new Server(sources, serverConfig);
 }
@@ -561,7 +557,7 @@ function createServer(sources) {
  *  Method to run whole server
  */
 function runServer(sources) {
-  var serverConfig = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  var serverConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   var server = new Server(sources, serverConfig);
   server.start();
